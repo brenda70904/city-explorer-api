@@ -13,10 +13,9 @@ app.get('/',(request, response) => {
 
 app.get('/weather', (request, response) => {
   try {
-    let cityName = request.query.name; //All lowercase
-    cityName = cityName.substring(0,1).toUpperCase() + cityName.substring(1);
-    console.log(cityName);
-    let cityData = data.find(item => item.city_name === cityName);
+    let lat = request.query.lat;
+    let lon = request.query.lon; //All lowercase
+    let cityData = data.find(item => item.lat === lat && item.lon === lon);
 
     let cities = cityData.data.map(eachDateObj => new Forecast(eachDateObj));
     // let city = cityDat
