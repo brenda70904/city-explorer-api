@@ -1,4 +1,4 @@
-# city-explorer-back
+# city-explorer-api
 
 **Author**: Brenda Jow
 **Version**: 1.0.0
