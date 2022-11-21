@@ -12,6 +12,9 @@ const PORT = process.env.PORT || 3002;
 const weather = require('./modules/weather.js');
 const movie = require('./modules/movie.js');
 
+app.get('/', (req, res)=>
+  res.send('hello from server'));
+  
 app.get('/weather', weatherHandler);
 
 app.get('/movie', movieHandler);
