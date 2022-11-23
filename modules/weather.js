@@ -9,7 +9,8 @@ module.exports = getWeather;
 function getWeather(latitude, longitude) {
   const key = 'weather-' + latitude + longitude;
   const url = `http://api.weatherbit.io/v2.0/forecast/daily/?key=${process.env.WEATHER_API_KEY}&lang=en&lat=${latitude}&lon=${longitude}&days=5`;
-  
+  const url2 = `http://api.weatherbit.io/v2.0/forecast/daily/?key=${process.env.WEATHER_API_KEY2}&lang=en&lat=${latitude}&lon=${longitude}&days=5`;
+
   //If cache exist & cache is not expired
   if (cache[key] && (Date.now() - cache[key].timestamp < 50000)) {
     console.log('Cache hit');
@@ -17,7 +18,7 @@ function getWeather(latitude, longitude) {
     console.log('Cache miss');
     cache[key] = {};
     cache[key].timestamp = Date.now();
-    cache[key].data = axios.get(url)
+    cache[key].data = axios.get(url || url2 )
       .then(response => parseWeather(response.data));
   }
   return cache[key].data;
